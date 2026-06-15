@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>हँसी की पुस्तकालय - Joke Generator</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ff6b6b">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>😂 हँसी की पुस्तकालय</h1>
+            <p class="subtitle">Joke Generator - मजेदार चुटकुले</p>
+        </header>
+
+        <main id="content">
+            <div class="container">
+                <!-- Joke Display Card -->
+                <div class="joke-card" id="jokeCard">
+                    <div class="joke-content">
+                        <p id="jokeText" class="joke-text">क्लिक करें और हँसी का आनंद लें!</p>
+                        <p id="jokeType" class="joke-type"></p>
+                    </div>
+                    <div class="joke-delivery" id="deliveryBox" style="display: none;">
+                        <p id="deliveryText" class="delivery-text"></p>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="controls">
+                    <button id="getJokeBtn" class="btn btn-primary">
+                        <span class="btn-icon">😂</span>
+                        <span class="btn-text">अगला चुटकुला</span>
+                    </button>
+                    <button id="revealBtn" class="btn btn-secondary" style="display: none;">
+                        <span class="btn-icon">🎭</span>
+                        <span class="btn-text">पंचलाइन दिखाएं</span>
+                    </button>
+                    <button id="shareBtn" class="btn btn-tertiary">
+                        <span class="btn-icon">📤</span>
+                        <span class="btn-text">शेयर करें</span>
+                    </button>
+                </div>
+
+                <!-- Settings -->
+                <div class="settings">
+                    <label for="jokeType">चुटकुले का प्रकार:</label>
+                    <select id="jokeTypeSelect" class="select-dropdown">
+                        <option value="any">कोई भी</option>
+                        <option value="general">सामान्य</option>
+                        <option value="programming">प्रोग्रामिंग</option>
+                        <option value="knock-knock">नॉक-नॉक</option>
+                        <option value="dad">डैड जोक</option>
+                    </select>
+
+                    <label for="language">भाषा:</label>
+                    <select id="languageSelect" class="select-dropdown">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी (Transliteration)</option>
+                    </select>
+                </div>
+
+                <!-- Favorites -->
+                <div class="favorites-section">
+                    <h3>❤️ पसंदीदा चुटकुले</h3>
+                    <div id="favoritesList" class="favorites-list">
+                        <p class="empty-message">कोई पसंदीदा नहीं है</p>
+                    </div>
+                    <button id="clearFavoritesBtn" class="btn btn-small" style="display: none;">
+                        सभी हटाएं
+                    </button>
+                </div>
+
+                <!-- Statistics -->
+                <div class="stats-section">
+                    <h3>📊 आँकड़े</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">कुल चुटकुले</span>
+                            <span class="stat-value" id="totalJokes">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">पसंदीदा</span>
+                            <span class="stat-value" id="favoritesCount">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status -->
+                <div id="status" class="status-message"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').catch(err => 
+                console.log('Service Worker registration failed:', err)
+            );
+        }
+    </script>
+</body>
+</html>
